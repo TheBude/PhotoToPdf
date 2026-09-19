@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5152';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5152';
 
 function Navbar() {
   return (

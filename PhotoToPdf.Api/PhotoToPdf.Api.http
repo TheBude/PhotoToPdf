@@ -1,0 +1,6 @@
+@PhotoToPdf.Api_HostAddress = http://localhost:5037
+
+GET {{PhotoToPdf.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

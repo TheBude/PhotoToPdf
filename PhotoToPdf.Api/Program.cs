@@ -22,11 +22,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
 
+var frontendOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ??
+[
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://photo-to-pdf-xi.vercel.app"
+];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Frontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://127.0.0.1:5173")
+        policy.WithOrigins(frontendOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
